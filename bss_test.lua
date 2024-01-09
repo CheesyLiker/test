@@ -20,6 +20,7 @@ local function getEventInfo(Event, Name)
     end
     print("\n")
 end
+--[[
 pcall(function()
 getEventInfo(game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RetrieveCachedPlayerStat"):InvokeServer(), "RetrieveCachedPlayerStat")
 end)
@@ -35,7 +36,7 @@ end)
 pcall(function()
 getEventInfo(game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("WindShrineDonation"):InvokeServer(), "WindShrineDonation")
 end)
-
+]]--
 pcall(function()
 getEventInfo(game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RetrieveBeeInfoSummary"):InvokeServer(), "RetrieveBeeInfoSummary")
 end)
