@@ -1,5 +1,5 @@
 ------------ Variables ----------------
-local LocalPlayer = game.Player.LocalPlayer
+local LocalPlayer = game.Players.LocalPlayer
 
 ------------ Functions ----------------
 local function printRPSSstats(group)
