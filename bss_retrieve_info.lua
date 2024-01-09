@@ -7,8 +7,9 @@ local function printRPSSstats(group)
 	for groupName, groupStats in pairs(group) do
 		print(groupName.."\n")
 		for index, stat in pairs(groupStats) do
-			print(RetrievePlayerStatsSummary[stat]["Desc"].."\n")
+			print(index..": ", RetrievePlayerStatsSummary[stat]["Desc"])
 		end
+		print("\n")
 	end
 end
 
