@@ -60,9 +60,9 @@ local function MoveToFlag(flag)
 	end
 	platform = game.workspace.AutofarmPlatform
 	
-	MoveCharacter(HRP, 40, CFrame.new(flag.Position.X, HRP.Position.Y, flag.Position.Z), true)
+	MoveCharacter(HRP, 40, CFrame.new(flag.Position.X, HRP.Position.Y + Vector3.new(0, -50, 0), flag.Position.Z), true)
 
-	MoveCharacter(HRP, 10, flag.CFrame + Vector3.new(0, -27, 0), false)
+	MoveCharacter(HRP, 5, flag.CFrame + Vector3.new(0, -27, 0), false)
 end
 
 
