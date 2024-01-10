@@ -42,9 +42,9 @@ local function MoveToFlag(flag)
 	local HRP = game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart") 
 	local Flags = game.Workspace.Map.Flags
 
-	for index, flag in pairs(game.Workspace.Map.Flags:GetChildren()) do
-		flag.Pole.Transparency = 1
-		flag.CanCollide = false
+	for index, flagModel in pairs(game.Workspace.Map.Flags:GetChildren()) do
+		flagModel.Pole.Transparency = 1
+		flagModel.CanCollide = false
 	end
 	
 	-- Turn Off Player Collision
