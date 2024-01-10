@@ -60,7 +60,7 @@ local function MoveToFlag(flag)
 	end
 	platform = game.workspace.AutofarmPlatform
 	
-	MoveCharacter(HRP, 40, CFrame.new(flag.Position.X, HRP.Position.Y + Vector3.new(0, -50, 0), flag.Position.Z), true)
+	MoveCharacter(HRP, 40, CFrame.new(flag.Position.X, HRP.Position.Y - 50, flag.Position.Z), true)
 
 	MoveCharacter(HRP, 5, flag.CFrame + Vector3.new(0, -27, 0), false)
 end
@@ -150,3 +150,25 @@ local Button = Tab:Button({
 	end)
 })
 
+local Tab = Main:CreateTab({
+	name = "Misc",
+	icon = "rbxassetid://15101013637"
+})
+
+Tab:Section({
+	text = "Change Team"
+})
+
+local Button = Tab:Button({
+	name = "Allies",
+	callback = (function()
+		game.ReplicatedStorage.Remote.Change_Team:InvokeServer("Allies")
+	end)
+})
+
+local Button = Tab:Button({
+	name = "Axis",
+	callback = (function()
+		game.ReplicatedStorage.Remote.Change_Team:InvokeServer("Axis")
+	end)
+})
