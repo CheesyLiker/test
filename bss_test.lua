@@ -41,6 +41,11 @@ local function MoveToFlag(flag)
 	
 	local HRP = game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart") 
 	local Flags = game.Workspace.Map.Flags
+
+	for index, flag in pairs(game.Workspace.Map.Flags:GetChildren()) do
+		flag.Pole.Transparency = 1
+		flag.CanCollide = false
+	end
 	
 	-- Turn Off Player Collision
 	for index, bodyPart in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
