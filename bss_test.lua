@@ -138,6 +138,52 @@ local Button = Tab:Button({
 	end)
 })
 
+Tab:Section({
+	text = "Utah Beach"
+})
+
+local Button = Tab:Button({
+	name = "Beach",
+	callback = (function()
+		MoveToFlag(game.Workspace.Map.Flags.Beach.Pole)
+	end)
+})
+
+local Button = Tab:Button({
+	name = "Trenches",
+	callback = (function()
+		MoveToFlag(game.Workspace.Map.Flags.Trenches.Pole)
+	end)
+})
+
+local Button = Tab:Button({
+	name = "Village",
+	callback = (function()
+		MoveToFlag(game.Workspace.Map.Flags.Village.Pole)
+	end)
+})
+
+local Button = Tab:Button({
+	name = "Bridge",
+	callback = (function()
+		MoveToFlag(game.Workspace.Map.Flags.Bridge.Pole)
+	end)
+})
+
+local Button = Tab:Button({
+	name = "City",
+	callback = (function()
+		MoveToFlag(game.Workspace.Map.Flags.City.Pole)
+	end)
+})
+
+local Button = Tab:Button({
+	name = "Church",
+	callback = (function()
+		MoveToFlag(game.Workspace.Map.Flags.Church.Pole)
+	end)
+})
+
 local Tab = Main:CreateTab({
 	name = "Misc",
 	icon = "rbxassetid://15101013637"
