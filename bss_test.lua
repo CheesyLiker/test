@@ -184,6 +184,45 @@ local Button = Tab:Button({
 	end)
 })
 
+Tab:Section({
+	text = "Castle Itter"
+})
+
+local Button = Tab:Button({
+	name = "Forest",
+	callback = (function()
+		MoveToFlag(game.Workspace.Map.Flags.Forest.Pole)
+	end)
+})
+
+local Button = Tab:Button({
+	name = "Barn",
+	callback = (function()
+		MoveToFlag(game.Workspace.Map.Flags.Barn.Pole)
+	end)
+})
+
+local Button = Tab:Button({
+	name = "Village",
+	callback = (function()
+		MoveToFlag(game.Workspace.Map.Flags.Village.Pole)
+	end)
+})
+
+local Button = Tab:Button({
+	name = "Walls",
+	callback = (function()
+		MoveToFlag(game.Workspace.Map.Flags.Walls.Pole)
+	end)
+})
+
+local Button = Tab:Button({
+	name = "Tower",
+	callback = (function()
+		MoveToFlag(game.Workspace.Map.Flags.Tower.Pole)
+	end)
+})
+
 local Tab = Main:CreateTab({
 	name = "Misc",
 	icon = "rbxassetid://15101013637"
