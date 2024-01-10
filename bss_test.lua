@@ -80,7 +80,7 @@ local function FindClosest(folder)
 			ClosestPart = item
 		end
 	end
-	return ClosestPart
+	return ClosestPart.Character.Head
 end
 
 local Main = Library:Init({
