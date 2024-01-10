@@ -80,7 +80,7 @@ local Button = Tab:Button({
 	callback = (function()
 		for index, model in pairs(game.Workspace.Map.Buildings:GetChildren()) do
 			model:Destroy()
-			task.wait(0.1)
+			task.wait(0.05)
 		end
 	end)
 })
