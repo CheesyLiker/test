@@ -1,7 +1,14 @@
+task.wait(5)
+
+
+
+
 loadstring(game:HttpGet(('https://raw.githubusercontent.com/ParmesanHubStorage/Storage/main/ParmesanHub_UI_Lib.lua')))()
 
 local TweenService = game:GetService("TweenService")
 local platform = nil
+
+_G.Aimbot = false
 
 local function MoveCharacter(tweenPart, waitTime, movePos, isDown)
 	local TweenPart = game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart")
@@ -33,12 +40,12 @@ local function MoveCharacter(tweenPart, waitTime, movePos, isDown)
 	TweenPart = platform
 	Tween = TweenService:Create(TweenPart, Info, TweenGoals)
 	Tween:Play()
-	
+
 	task.wait(waitTime)
 end
 
 local function MoveToFlag(flag)
-	
+
 	local HRP = game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart") 
 	local Flags = game.Workspace.Map.Flags
 
@@ -46,14 +53,14 @@ local function MoveToFlag(flag)
 		flagModel.Pole.Transparency = 1
 		flagModel.Pole.CanCollide = false
 	end
-	
+
 	-- Turn Off Player Collision
 	for index, bodyPart in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
 		if (bodyPart.ClassName == "Part" or bodyPart.ClassName == "MeshPart") and bodyPart.CanCollide == true then
 			bodyPart.CanCollide = false
 		end
 	end
-	
+
 	-- Create a Platform
 	platform = nil
 	if not game.workspace:FindFirstChild("AutofarmPlatform") then
@@ -64,12 +71,22 @@ local function MoveToFlag(flag)
 		platform.Anchored = true
 	end
 	platform = game.workspace.AutofarmPlatform
-	
+
 	MoveCharacter(HRP, 40, CFrame.new(flag.Position.X, HRP.Position.Y - 50, flag.Position.Z), true)
 
 	MoveCharacter(HRP, 5, flag.CFrame + Vector3.new(0, -20, 0), false)
 end
 
+local function FindClosest(folder)
+	local ClosestPart = nil
+	local LP = game.Players.LocalPlayer
+	for index, item in pairs(folder:GetChildren()) do
+		if (ClosestPart == nil or (LP:DistanceFromCharacter(item.Character.Head.Position) < LP:DistanceFromCharacter(ClosestPart.Position))) and ((game.Players.LocalPlayer.Team == "Axis" and item.Team == "Allies") or (game.Players.LocalPlayer.Team == "Allies" and item.Team == "Axis")) then
+			ClosestPart = item
+		end
+	end
+	return ClosestPart
+end
 
 local Main = Library:Init({
 	name = "D-DAY PRIVATE SCRIPT"
@@ -97,6 +114,23 @@ local Button = Tab:Button({
 			game.Terrain:Clear()
 		end)
 	end)
+})
+
+local Toggle = Tab:Toggle({
+	name = "Aimbot",
+	callback = function(Value)
+		_G.Aimbot = not _G.Aimbot
+		
+		local AimbotFunction = nil
+		
+		if _G.Aimbot then
+			AimbotFunction = game:GetService("RunService").Heartbeat:Connect(function()
+				game.Workspace.Camera.CameraSubject = FindClosest(game.Players)
+			end) 
+		else
+			AimbotFunction:Disconnect()
+		end
+	end
 })
 
 local Tab = Main:CreateTab({
