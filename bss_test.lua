@@ -44,7 +44,7 @@ local function MoveToFlag(flag)
 
 	for index, flagModel in pairs(game.Workspace.Map.Flags:GetChildren()) do
 		flagModel.Pole.Transparency = 1
-		flagModel.CanCollide = false
+		flagModel.Pole.CanCollide = false
 	end
 	
 	-- Turn Off Player Collision
