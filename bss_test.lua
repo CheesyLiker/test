@@ -62,7 +62,7 @@ local function MoveToFlag(flag)
 	
 	MoveCharacter(HRP, 40, CFrame.new(flag.Position.X, HRP.Position.Y - 50, flag.Position.Z), true)
 
-	MoveCharacter(HRP, 5, flag.CFrame + Vector3.new(0, -27, 0), false)
+	MoveCharacter(HRP, 5, flag.CFrame + Vector3.new(0, -20, 0), false)
 end
 
 
