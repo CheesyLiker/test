@@ -78,22 +78,10 @@ local Tab = Main:CreateTab({
 local Button = Tab:Button({
 	name = "Delete Obstacles",
 	callback = (function()
-		pcall(function()
-			for index, model in pairs(game.Workspace.Map.Vegetation:GetChildren()) do
-				model:Destroy()
-				task.wait(0.05)
-			end
-			
-			for index, model in pairs(game.Workspace.Map.Boundaries:GetChildren()) do
-				model:Destroy()
-				task.wait(0.05)
-			end
-			
-			for index, model in pairs(game.Workspace.Map.Buildings:GetChildren()) do
-				model:Destroy()
-				task.wait(0.05)
-			end
-		end)
+		for index, model in pairs(game.Workspace.Map.Buildings:GetChildren()) do
+			model:Destroy()
+			task.wait(0.1)
+		end
 	end)
 })
 
