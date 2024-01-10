@@ -55,7 +55,7 @@ local function MoveToFlag(flag)
 		platform = Instance.new("Part", game.workspace)
 		platform.Name = "AutofarmPlatform"
 		platform.Size = Vector3.new(15, 0.5, 15)
-		platform.Transparency = 1
+		platform.Transparency = 0
 		platform.Anchored = true
 	end
 	platform = game.workspace.AutofarmPlatform
