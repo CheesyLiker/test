@@ -75,7 +75,7 @@ end
 local function FindClosest(folder)
 	local ClosestPart = nil
 	local LP = game.Players.LocalPlayer
-	for index, item in pairs(folder:GetChildren()) do
+	for index, item in pairs(folder) do
 		if (ClosestPart == nil or (LP:DistanceFromCharacter(item.Character.Head.Position) < LP:DistanceFromCharacter(ClosestPart.Character.Head.Position))) then
 			ClosestPart = item
 		end
@@ -120,7 +120,7 @@ local Toggle = Tab:Toggle({
 		
 		if _G.Aimbot then
 			AimbotFunction = game:GetService("RunService").Heartbeat:Connect(function()
-				game.Workspace.Camera.CameraSubject = FindClosest(game.Players)
+				game.Workspace.Camera.CameraSubject = FindClosest(game.Players:GetChildren())
 			end) 
 		else
 			AimbotFunction:Disconnect()
