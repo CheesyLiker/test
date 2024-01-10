@@ -81,7 +81,7 @@ local function FindClosest(folder)
 	local ClosestPart = nil
 	local LP = game.Players.LocalPlayer
 	for index, item in pairs(folder:GetChildren()) do
-		if (ClosestPart == nil or (LP:DistanceFromCharacter(item.Character.Head.Position) < LP:DistanceFromCharacter(ClosestPart.Position))) then
+		if item.Name ~= LP.Name and (ClosestPart == nil or (LP:DistanceFromCharacter(item.Character.Head.Position) < LP:DistanceFromCharacter(ClosestPart.Position))) then
 			ClosestPart = item
 		end
 	end
