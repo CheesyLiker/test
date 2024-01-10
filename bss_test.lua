@@ -86,16 +86,6 @@ local Button = Tab:Button({
 })
 
 local Button = Tab:Button({
-	name = "Delete Vegetation",
-	callback = (function()
-		for index, model in pairs(game.Workspace.Map.Vegetation:GetChildren()) do
-			model:Destroy()
-			task.wait(0.025)
-		end
-	end)
-})
-
-local Button = Tab:Button({
 	name = "Delete Terrain",
 	callback = (function()
 		pcall(function()
