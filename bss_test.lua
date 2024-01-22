@@ -69,15 +69,17 @@ local function MoveToFlag(flag)
 
 	MoveCharacter(HRP, 40, CFrame.new(flag.Position.X, HRP.Position.Y - 50, flag.Position.Z), true)
 
-	MoveCharacter(HRP, 5, flag.CFrame + Vector3.new(0, -20, 0), false)
+	MoveCharacter(HRP, 5, flag.CFrame + Vector3.new(0, -23, 0), false)
 end
 
-local function FindClosest(folder)
+local function FindClosest()
 	local ClosestPart = nil
 	local LP = game.Players.LocalPlayer
-	for index, item in pairs(folder) do
-		if (ClosestPart == nil or (LP:DistanceFromCharacter(item.Character.Head.Position) < LP:DistanceFromCharacter(ClosestPart.Character.Head.Position))) then
-			ClosestPart = item
+	for index, item in pairs(game.Players:GetChildren()) do
+		if item.Character and item.Character:FindFirstChild("Humanoid") and item.Character.Humanoid.Health ~= 0 and item.Name ~= game.Players.LocalPlayer.Name and item.Team ~= game.Players.LocalPlayer.Team then
+			if item.Character:FindFirstChild("Head") ~= nil and (ClosestPart == nil or (LP:DistanceFromCharacter(item.Character.Head.Position) < LP:DistanceFromCharacter(ClosestPart.Character.Head.Position))) then
+				ClosestPart = item
+			end
 		end
 	end
 	return ClosestPart.Character.Head
@@ -106,7 +108,7 @@ local Button = Tab:Button({
 	name = "Delete Terrain",
 	callback = (function()
 		pcall(function()
-			game.Terrain:Clear()
+			game.workspace.Terrain:Clear()
 		end)
 	end)
 })
@@ -118,13 +120,14 @@ local Toggle = Tab:Toggle({
 		
 		local AimbotFunction = nil
 		
-		if _G.Aimbot then
-			AimbotFunction = game:GetService("RunService").Heartbeat:Connect(function()
-				game.Workspace.Camera.CameraSubject = FindClosest(game.Players:GetChildren())
-			end) 
-		else
-			AimbotFunction:Disconnect()
-		end
+		AimbotFunction = game:GetService("RunService").Heartbeat:Connect(function()
+			if _G.Aimbot then
+				game.Workspace.Camera.CameraSubject = FindClosest()
+			else
+				AimbotFunction:Disconnect()
+				game.Workspace.Camera.CameraSubject = game.Players.LocalPlayer.Character.Head
+			end
+		end) 
 	end
 })
 
