@@ -46,20 +46,20 @@ local function AutofarmFunction()
 		game.Workspace.Game.Mobs.ChildAdded:Connect(function(Boss) Boss:WaitForChild("Enemy").Health = 0 end)
 
 		print("Checking avalaible battles")
+		local currentBossName = ""
 		for requiredLevel, bossData in pairs(currentMob) do
-			if currentLevel >= requiredLevel then
-				print(bossData.Name)
-				game:GetService("Lighting").Invite:FireServer({}, workspace.Game.Teleporters.Model:FindFirstChild(bossData.Name))
-			end
+			if currentLevel >= requiredLevel then currentBossName = bossData.Name end
 		end
 
+		game:GetService("Lighting").Invite:FireServer({}, workspace.Game.Teleporters.Model:FindFirstChild(currentBossName))
+		
 		print("Waiting for character removing")
 		LocalPlayer.CharacterRemoving:Wait()
 	end
 end
 
 local Main = Library:Init({
-	name = "Undertale Boss Battles VER 0.07"
+	name = "Undertale Boss Battles VER 0.08"
 })
 
 local Tab = Main:CreateTab({
