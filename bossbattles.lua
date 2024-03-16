@@ -36,18 +36,17 @@ local function AutofarmFunction()
 			task.wait(0.15)
 			if currentLevel == 100 then
 				game:GetService("ReplicatedStorage").ResetsClick:FireServer(game:GetService("Players").LocalPlayer.leaderstats.Resets)
+				LocalPlayer.CharacterRemoving:Wait()
 			end
-			game.Players.LocalPlayer.PlayerGui.InviteGUI.Enabled = false
+			game.Players.LocalPlayer.PlayerGui:WaitForChild("InviteGUI").Enabled = false
 		end)
 
 		local currentBoss = nil
 		local lastSavedProgress = 1
 		for requiredLevel, bossData in pairs(currentMob) do
-			print("RL", requiredLevel, "PR", bossData.Progress)
 			if currentLevel >= requiredLevel and bossData.Progress >= lastSavedProgress then 
 				currentBoss = bossData
 				lastSavedProgress = bossData.Progress
-				print(currentBoss.Name)
 			end
 		end
 
@@ -63,7 +62,7 @@ local function AutofarmFunction()
 end
 
 local Main = Library:Init({
-	name = "Undertale Boss Battles VER 0.31"
+	name = "Undertale Boss Battles VER 0.32"
 })
 
 local Tab = Main:CreateTab({
