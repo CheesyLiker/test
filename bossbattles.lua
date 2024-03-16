@@ -43,6 +43,7 @@ local function AutofarmFunction()
 		local currentBoss = nil
 		local lastSavedProgress = 1
 		for requiredLevel, bossData in pairs(currentMob) do
+			print("RL", requiredLevel, "PR", bossData.Progress)
 			if currentLevel >= requiredLevel and bossData.Progress > lastSavedProgress then 
 				currentBoss = bossData
 				lastSavedProgress = bossData.Progress
@@ -62,7 +63,7 @@ local function AutofarmFunction()
 end
 
 local Main = Library:Init({
-	name = "Undertale Boss Battles VER 0.29"
+	name = "Undertale Boss Battles VER 0.30"
 })
 
 local Tab = Main:CreateTab({
