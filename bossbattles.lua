@@ -23,14 +23,14 @@ local currentMob = {
 local function AutofarmFunction()
 	_G.MobsAutofarm = not _G.MobsAutofarm
 	while _G.MobsAutofarm and task.wait() do
-		local LocalPlayer = game.Players.LocalPlayer
-		local playerCharacter = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
-		local HRP = playerCharacter:WaitForChild("HumanoidRootPart")
-		
 		local currentLevel = LocalPlayer:WaitForChild("leaderstats"):WaitForChild("Level").Value
 		if currentLevel == 100 then
 			game:GetService("ReplicatedStorage").ResetsClick:FireServer(game:GetService("Players").LocalPlayer.leaderstats.Resets)
 		end
+		
+		local LocalPlayer = game.Players.LocalPlayer
+		local playerCharacter = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+		local HRP = playerCharacter:WaitForChild("HumanoidRootPart")
 		
 		game.Workspace.Game.Mobs.ChildAdded:Connect(function(Boss)
 			Boss:WaitForChild("Enemy").Health = 0
