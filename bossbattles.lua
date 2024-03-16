@@ -14,27 +14,9 @@ local currentMob = {
 	[14] = {Name = "Undyne2", Quantity = 1},
 }
 
-local function turnOnInviteGUI()
-	local LocalPlayer = game.Players.LocalPlayer
-	while _G.MobsAutofarm and RunService.RenderStepped:Wait() do
-		local firstGUI = LocalPlayer.PlayerGui:FindFirstChild("InviteGUI") 
-		local secondGUI = LocalPlayer.PlayerGui:FindFirstChild("InviteGUIa")
-		if firstGUI and not firstGUI.Enabled then firstGUI.Enabled = true
-		elseif secondGUI and not secondGUI.Enabled then secondGUI.Enabled = true end
-	end
-end
-
 local function AutofarmFunction()
 	_G.MobsAutofarm = not _G.MobsAutofarm
-	local cycle = 0
 	while _G.MobsAutofarm and task.wait() do
-		if cycle == 0 then
-			local newThread = coroutine.create(turnOnInviteGUI)
-			coroutine.resume(newThread)
-			task.wait(3)
-		end
-		cycle += 1
-		print(cycle)
 		print("Waiting for character")
 		local LocalPlayer = game.Players.LocalPlayer
 		local playerCharacter = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
@@ -65,7 +47,7 @@ local function AutofarmFunction()
 end
 
 local Main = Library:Init({
-	name = "Undertale Boss Battles VER 0.09"
+	name = "Undertale Boss Battles VER 0.1"
 })
 
 local Tab = Main:CreateTab({
