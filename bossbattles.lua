@@ -32,7 +32,8 @@ local function AutofarmFunction()
 		for requiredLevel, bossData in pairs(currentMob) do
 			if currentLevel >= requiredLevel then currentBoss = bossData end
 		end
-		
+
+		print(currentBoss.Name)
 		local Teleporter = workspace.Game.Teleporters.Model:FindFirstChild(currentBoss.Name)
 		print("Name:", Teleporter)
 		print("CFrame:", playerCharacter.HumanoidRootPart.CFrame)
@@ -49,7 +50,7 @@ local function AutofarmFunction()
 end
 
 local Main = Library:Init({
-	name = "Undertale Boss Battles VER 0.12"
+	name = "Undertale Boss Battles VER 0.13"
 })
 
 local Tab = Main:CreateTab({
