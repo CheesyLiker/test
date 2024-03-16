@@ -33,16 +33,20 @@ local function AutofarmFunction()
 			coroutine.resume(newThread)
 		end
 		cycle += 1
-		
+		print(cycle)
+		print("Waiting for character")
 		local LocalPlayer = game.Players.LocalPlayer
 		LocalPlayer.CharacterAdded:Wait()
-		
+
+		print("Waiting for level")
 		local currentLevel = LocalPlayer:WaitForChild("leaderstats"):WaitForChild("Level").Value
-		
+
+		print("Connecting kill function")
 		game.Workspace.Mobs.ChildAdded:Connect(function(Boss)
 			Boss:WaitForChild("Enemy").Health = 0
 		end)
-		
+
+		print("Checking avalaible battles")
 		for requiredLevel, bossData in pairs(currentMob) do
 			print(typeof(requiredLevel))
 			if currentLevel >= requiredLevel then
@@ -50,13 +54,14 @@ local function AutofarmFunction()
 				print("seks")
 			end
 		end
-		
+
+		print("Waiting for character removing")
 		LocalPlayer.CharacterRemoving:Wait()
 	end
 end
 
 local Main = Library:Init({
-	name = "Undertale Boss Battles VER 0.02"
+	name = "Undertale Boss Battles VER 0.03"
 })
 
 local Tab = Main:CreateTab({
