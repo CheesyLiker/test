@@ -55,7 +55,7 @@ local function AutofarmFunction()
 end
 
 local Main = Library:Init({
-	name = "Undertale Boss Battles Private Script"
+	name = "Undertale Boss Battles VER 0.01"
 })
 
 local Tab = Main:CreateTab({
