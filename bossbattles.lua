@@ -46,10 +46,9 @@ local function AutofarmFunction()
 
 		print("Checking avalaible battles")
 		for requiredLevel, bossData in pairs(currentMob) do
-			print(typeof(requiredLevel))
 			if currentLevel >= requiredLevel then
+				print(bossData.Name)
 				game:GetService("Lighting").Invite:FireServer({}, workspace.Game.Teleporters.Model:FindFirstChild(bossData.Name))
-				print("seks")
 			end
 		end
 
@@ -59,7 +58,7 @@ local function AutofarmFunction()
 end
 
 local Main = Library:Init({
-	name = "Undertale Boss Battles VER 0.05"
+	name = "Undertale Boss Battles VER 0.06"
 })
 
 local Tab = Main:CreateTab({
