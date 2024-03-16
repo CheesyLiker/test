@@ -20,37 +20,31 @@ local function AutofarmFunction()
 		print("Waiting for character")
 		local LocalPlayer = game.Players.LocalPlayer
 		local playerCharacter = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
-
-		print("Waiting for level")
+		local HRP = playerCharacter:WaitForChild("HumanoidRootPart")
+		
 		local currentLevel = LocalPlayer:WaitForChild("leaderstats"):WaitForChild("Level").Value
 
-		print("Connecting kill function")
 		game.Workspace.Game.Mobs.ChildAdded:Connect(function(Boss) Boss:WaitForChild("Enemy").Health = 0 end)
 
-		print("Checking avalaible battles")
 		local currentBoss = nil
 		for requiredLevel, bossData in pairs(currentMob) do
 			if currentLevel >= requiredLevel then currentBoss = bossData end
 		end
 
-		print(currentBoss.Name)
 		local Teleporter = workspace.Game.Teleporters.Model:FindFirstChild(currentBoss.Name)
-		print("Name:", Teleporter)
-		print("CFrame:", playerCharacter.HumanoidRootPart.CFrame)
 		
 		while LocalPlayer.PlayerGui.InviteGUI.Enabled == false and task.wait() do
-			playerCharacter.HumanoidRootPart.CFrame = Teleporter.CFrame
+			HRP.CFrame = Teleporter.CFrame
 		end
 		
 		game:GetService("Lighting").Invite:FireServer({}, Teleporter)
 		
-		print("Waiting for character removing")
 		LocalPlayer.CharacterRemoving:Wait()
 	end
 end
 
 local Main = Library:Init({
-	name = "Undertale Boss Battles VER 0.15"
+	name = "Undertale Boss Battles VER 0.17"
 })
 
 local Tab = Main:CreateTab({
