@@ -36,7 +36,7 @@ local function AutofarmFunction()
 		print(cycle)
 		print("Waiting for character")
 		local LocalPlayer = game.Players.LocalPlayer
-		LocalPlayer.CharacterAdded:Wait()
+		local playerCharacter = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
 
 		print("Waiting for level")
 		local currentLevel = LocalPlayer:WaitForChild("leaderstats"):WaitForChild("Level").Value
@@ -61,7 +61,7 @@ local function AutofarmFunction()
 end
 
 local Main = Library:Init({
-	name = "Undertale Boss Battles VER 0.03"
+	name = "Undertale Boss Battles VER 0.04"
 })
 
 local Tab = Main:CreateTab({
