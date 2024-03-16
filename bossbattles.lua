@@ -23,12 +23,12 @@ local currentMob = {
 local function AutofarmFunction()
 	_G.MobsAutofarm = not _G.MobsAutofarm
 	while _G.MobsAutofarm and task.wait() do
+		local LocalPlayer = game.Players.LocalPlayer
 		local currentLevel = LocalPlayer:WaitForChild("leaderstats"):WaitForChild("Level").Value
 		if currentLevel == 100 then
 			game:GetService("ReplicatedStorage").ResetsClick:FireServer(game:GetService("Players").LocalPlayer.leaderstats.Resets)
 		end
 		
-		local LocalPlayer = game.Players.LocalPlayer
 		local playerCharacter = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
 		local HRP = playerCharacter:WaitForChild("HumanoidRootPart")
 		
@@ -56,7 +56,7 @@ local function AutofarmFunction()
 end
 
 local Main = Library:Init({
-	name = "Undertale Boss Battles VER 0.22"
+	name = "Undertale Boss Battles VER 0.23"
 })
 
 local Tab = Main:CreateTab({
