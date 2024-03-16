@@ -40,6 +40,7 @@ local function AutofarmFunction()
 			game:GetService("ReplicatedStorage").ResetsClick:FireServer(game:GetService("Players").LocalPlayer.leaderstats.Resets)
 			LocalPlayer.CharacterRemoving:Wait()
 			local playerCharacter = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+			currentLevel = 1
 		end
 		
 		local currentBoss = nil
@@ -63,7 +64,7 @@ local function AutofarmFunction()
 end
 
 local Main = Library:Init({
-	name = "Undertale Boss Battles VER 0.33"
+	name = "Undertale Boss Battles VER 0.34"
 })
 
 local Tab = Main:CreateTab({
