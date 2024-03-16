@@ -30,7 +30,7 @@ local function AutofarmFunction()
 		print("Checking avalaible battles")
 		local currentBoss = nil
 		for requiredLevel, bossData in pairs(currentMob) do
-			if currentLevel >= requiredLevel then currentBossName = bossData end
+			if currentLevel >= requiredLevel then currentBoss = bossData end
 		end
 		
 		local Teleporter = workspace.Game.Teleporters.Model:FindFirstChild(currentBoss.Name)
