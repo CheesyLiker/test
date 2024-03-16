@@ -10,7 +10,7 @@ local currentMob = {
 	[4] = {Name = "HM_Toriel", Quantity = 1},
 	[6] = {Name = "Papyrus", Quantity = 1},
 	[7] = {Name = "HM_Papyrus", Quantity = 1},
-	[8] = {Name = "Mettaton", Quantity = 1},
+	[8] = {Name = "MTT", Quantity = 1},
 	[14] = {Name = "Undyne2", Quantity = 1},
 }
 
@@ -50,7 +50,7 @@ local function AutofarmFunction()
 end
 
 local Main = Library:Init({
-	name = "Undertale Boss Battles VER 0.13"
+	name = "Undertale Boss Battles VER 0.14"
 })
 
 local Tab = Main:CreateTab({
