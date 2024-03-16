@@ -17,8 +17,7 @@ local currentMob = {
 	[60] = {Name = "HM_Sans", Quantity = 1},
 	[65] = {Name = "HM_Undyne", Quantity = 1},
 	[70] = {Name = "HM_Asgore", Quantity = 1},
-	[80] = {Name = "HM_Chara", Quantity = 1},
-	
+	[80] = {Name = "HM_Chara", Quantity = 1}
 }
 
 local function AutofarmFunction()
