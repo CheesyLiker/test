@@ -31,6 +31,7 @@ local function AutofarmFunction()
 		if cycle == 0 then
 			local newThread = coroutine.create(turnOnInviteGUI)
 			coroutine.resume(newThread)
+			task.wait(3)
 		end
 		cycle += 1
 		print(cycle)
@@ -58,7 +59,7 @@ local function AutofarmFunction()
 end
 
 local Main = Library:Init({
-	name = "Undertale Boss Battles VER 0.06"
+	name = "Undertale Boss Battles VER 0.07"
 })
 
 local Tab = Main:CreateTab({
