@@ -25,6 +25,7 @@ local function AutofarmFunction()
 	while _G.MobsAutofarm and task.wait() do
 		local LocalPlayer = game.Players.LocalPlayer
 		local currentLevel = LocalPlayer:WaitForChild("leaderstats"):WaitForChild("Level").Value
+		print("Current Level:", currentLevel, "DataType:", typeof(currentLevel))
 		if currentLevel == 100 then
 			game:GetService("ReplicatedStorage").ResetsClick:FireServer(game:GetService("Players").LocalPlayer.leaderstats.Resets)
 			LocalPlayer.CharacterRemoving:Wait()
@@ -42,12 +43,11 @@ local function AutofarmFunction()
 		local currentBoss = nil
 		for requiredLevel, bossData in pairs(currentMob) do
 			if currentLevel >= requiredLevel then currentBoss = bossData end
-			print(currentBoss.Name)
 		end
 
 		local Teleporter = workspace.Game.Teleporters.Model:FindFirstChild(currentBoss.Name)
 		
-		while LocalPlayer.PlayerGui.InviteGUI.Enabled == false and task.wait() do
+		while LocalPlayer.PlayerGui:WaitForChild("InviteGUI").Enabled == false and task.wait() do
 			HRP.CFrame = Teleporter.CFrame
 		end
 		
