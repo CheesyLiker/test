@@ -43,9 +43,9 @@ local function AutofarmFunction()
 			Boss:WaitForChild("Enemy").Health = 0
 		end)
 		
-		for requiredLevel, bossName in pairs(currentMob) do
+		for requiredLevel, bossData in pairs(currentMob) do
 			if currentLevel >= requiredLevel then
-				game:GetService("Lighting").Invite:FireServer({}, workspace.Game.Teleporters.Model:FindFirstChild(bossName))
+				game:GetService("Lighting").Invite:FireServer({}, workspace.Game.Teleporters.Model:FindFirstChild(bossData.Name))
 				print("seks")
 			end
 		end
