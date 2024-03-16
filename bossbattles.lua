@@ -5,19 +5,19 @@ _G.MobsAutofarm = false
 local RunService = game:GetService("RunService")
 
 local currentMob = {
-	[1] = {Name = "Moldsmal", Quantity = 3},
-	[3] = {Name = "Toriel", Quantity = 1},
-	[4] = {Name = "HM_Toriel", Quantity = 1},
-	[6] = {Name = "Papyrus", Quantity = 1},
-	[7] = {Name = "HM_Papyrus", Quantity = 1},
-	[8] = {Name = "MTT", Quantity = 1},
-	[14] = {Name = "Undyne2", Quantity = 1},
-	[21] = {Name = "Sans", Quantity = 1},
-	[50] = {Name = "MTT_NEO", Quantity = 1},
-	[60] = {Name = "HM_Sans", Quantity = 1},
-	[65] = {Name = "HM_Undyne", Quantity = 1},
-	[70] = {Name = "HM_Asgore", Quantity = 1},
-	[80] = {Name = "HM_Chara", Quantity = 1}
+	[1] = {Name = "Moldsmal", Progress = 1},
+	[3] = {Name = "Toriel", Progress = 2},
+	[4] = {Name = "HM_Toriel", Progress = 3},
+	[6] = {Name = "Papyrus", Progress = 4},
+	[7] = {Name = "HM_Papyrus", Progress = 5},
+	[8] = {Name = "MTT", Progress = 6},
+	[14] = {Name = "Undyne2", Progress = 7},
+	[21] = {Name = "Sans", Progress = 8},
+	[50] = {Name = "MTT_NEO", Progress = 9},
+	[60] = {Name = "HM_Sans", Progress = 10},
+	[65] = {Name = "HM_Undyne", Progress = 11},
+	[70] = {Name = "HM_Asgore", Progress = 12},
+	[80] = {Name = "HM_Chara", Progress = 13}
 }
 
 local function AutofarmFunction()
@@ -26,10 +26,6 @@ local function AutofarmFunction()
 		local LocalPlayer = game.Players.LocalPlayer
 		local currentLevel = LocalPlayer:WaitForChild("leaderstats"):WaitForChild("Level").Value
 		print("Current Level:", currentLevel, "DataType:", typeof(currentLevel))
-		if currentLevel == 100 then
-			game:GetService("ReplicatedStorage").ResetsClick:FireServer(game:GetService("Players").LocalPlayer.leaderstats.Resets)
-			LocalPlayer.CharacterRemoving:Wait()
-		end
 		
 		local playerCharacter = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
 		local HRP = playerCharacter:WaitForChild("HumanoidRootPart")
@@ -38,11 +34,20 @@ local function AutofarmFunction()
 			Boss:WaitForChild("Enemy").Health = 0
 			HRP.CFrame = Boss:FindFirstChildOfClass("Part").CFrame
 			task.wait(0.15)
+			if currentLevel == 100 then
+				game:GetService("ReplicatedStorage").ResetsClick:FireServer(game:GetService("Players").LocalPlayer.leaderstats.Resets)
+			end
+			game.Players.LocalPlayer.PlayerGui.InviteGUI.Enabled = false
 		end)
 
 		local currentBoss = nil
+		local lastSavedProgress = 1
 		for requiredLevel, bossData in pairs(currentMob) do
-			if currentLevel >= requiredLevel then currentBoss = bossData print(currentBoss.Name) end
+			if currentLevel >= requiredLevel and bossData.Progress > lastSavedProgress then 
+				currentBoss = bossData
+				lastSavedProgress = bossData.Progress
+				print(currentBoss.Name)
+			end
 		end
 
 		local Teleporter = workspace.Game.Teleporters.Model:FindFirstChild(currentBoss.Name)
@@ -52,14 +57,12 @@ local function AutofarmFunction()
 		end
 		
 		game:GetService("Lighting").Invite:FireServer({}, Teleporter)
-		
 		LocalPlayer.CharacterRemoving:Wait()
-		LocalPlayer.PlayerGui.InviteGUI.Enabled = false
 	end
 end
 
 local Main = Library:Init({
-	name = "Undertale Boss Battles VER 0.28"
+	name = "Undertale Boss Battles VER 0.29"
 })
 
 local Tab = Main:CreateTab({
