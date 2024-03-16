@@ -27,6 +27,7 @@ local function AutofarmFunction()
 		local currentLevel = LocalPlayer:WaitForChild("leaderstats"):WaitForChild("Level").Value
 		if currentLevel == 100 then
 			game:GetService("ReplicatedStorage").ResetsClick:FireServer(game:GetService("Players").LocalPlayer.leaderstats.Resets)
+			LocalPlayer.CharacterRemoving:Wait()
 		end
 		
 		local playerCharacter = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
@@ -40,6 +41,7 @@ local function AutofarmFunction()
 		local currentBoss = nil
 		for requiredLevel, bossData in pairs(currentMob) do
 			if currentLevel >= requiredLevel then currentBoss = bossData end
+			print(currentBoss.Name)
 		end
 
 		local Teleporter = workspace.Game.Teleporters.Model:FindFirstChild(currentBoss.Name)
@@ -56,7 +58,7 @@ local function AutofarmFunction()
 end
 
 local Main = Library:Init({
-	name = "Undertale Boss Battles VER 0.23"
+	name = "Undertale Boss Battles VER 0.24"
 })
 
 local Tab = Main:CreateTab({
