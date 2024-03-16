@@ -38,7 +38,7 @@ local function AutofarmFunction()
 		print("Name:", Teleporter)
 		print("CFrame:", playerCharacter.HumanoidRootPart.CFrame)
 		
-		while LocalPlayer.PlayerGui.InviteGUI.Enabled == false do
+		while LocalPlayer.PlayerGui.InviteGUI.Enabled == false and task.wait() do
 			playerCharacter.HumanoidRootPart.CFrame = Teleporter.CFrame
 		end
 		
@@ -50,7 +50,7 @@ local function AutofarmFunction()
 end
 
 local Main = Library:Init({
-	name = "Undertale Boss Battles VER 0.14"
+	name = "Undertale Boss Battles VER 0.15"
 })
 
 local Tab = Main:CreateTab({
