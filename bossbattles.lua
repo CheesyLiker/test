@@ -28,7 +28,9 @@ local function AutofarmFunction()
 		local HRP = playerCharacter:WaitForChild("HumanoidRootPart")
 		
 		local currentLevel = LocalPlayer:WaitForChild("leaderstats"):WaitForChild("Level").Value
-		local currentResets = LocalPlayer:WaitForChild("leaderstats"):WaitForChild("Resets").Value
+		if currentLevel == 100 then
+			game:GetService("ReplicatedStorage").ResetsClick:FireServer(game:GetService("Players").LocalPlayer.leaderstats.Resets)
+		end
 		
 		game.Workspace.Game.Mobs.ChildAdded:Connect(function(Boss)
 			Boss:WaitForChild("Enemy").Health = 0
@@ -49,11 +51,12 @@ local function AutofarmFunction()
 		game:GetService("Lighting").Invite:FireServer({}, Teleporter)
 		
 		LocalPlayer.CharacterRemoving:Wait()
+		LocalPlayer.PlayerGui.InviteGUI.Enabled = false
 	end
 end
 
 local Main = Library:Init({
-	name = "Undertale Boss Battles VER 0.21"
+	name = "Undertale Boss Battles VER 0.22"
 })
 
 local Tab = Main:CreateTab({
