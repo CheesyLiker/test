@@ -23,13 +23,13 @@ local currentMob = {
 local function AutofarmFunction()
 	_G.MobsAutofarm = not _G.MobsAutofarm
 	while _G.MobsAutofarm and task.wait() do
-		print("Waiting for character")
 		local LocalPlayer = game.Players.LocalPlayer
 		local playerCharacter = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
 		local HRP = playerCharacter:WaitForChild("HumanoidRootPart")
 		
 		local currentLevel = LocalPlayer:WaitForChild("leaderstats"):WaitForChild("Level").Value
-
+		local currentResets = LocalPlayer:WaitForChild("leaderstats"):WaitForChild("Resets").Value
+		
 		game.Workspace.Game.Mobs.ChildAdded:Connect(function(Boss)
 			Boss:WaitForChild("Enemy").Health = 0
 			HRP.CFrame = Boss:FindFirstChildOfClass("Part").CFrame
@@ -53,7 +53,7 @@ local function AutofarmFunction()
 end
 
 local Main = Library:Init({
-	name = "Undertale Boss Battles VER 0.20"
+	name = "Undertale Boss Battles VER 0.21"
 })
 
 local Tab = Main:CreateTab({
