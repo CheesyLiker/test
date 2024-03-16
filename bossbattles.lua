@@ -42,9 +42,7 @@ local function AutofarmFunction()
 		local currentLevel = LocalPlayer:WaitForChild("leaderstats"):WaitForChild("Level").Value
 
 		print("Connecting kill function")
-		game.Workspace.Mobs.ChildAdded:Connect(function(Boss)
-			Boss:WaitForChild("Enemy").Health = 0
-		end)
+		game.Workspace.Game.Mobs.ChildAdded:Connect(function(Boss) Boss:WaitForChild("Enemy").Health = 0 end)
 
 		print("Checking avalaible battles")
 		for requiredLevel, bossData in pairs(currentMob) do
@@ -61,7 +59,7 @@ local function AutofarmFunction()
 end
 
 local Main = Library:Init({
-	name = "Undertale Boss Battles VER 0.04"
+	name = "Undertale Boss Battles VER 0.05"
 })
 
 local Tab = Main:CreateTab({
