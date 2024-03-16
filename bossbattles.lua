@@ -46,6 +46,7 @@ local function AutofarmFunction()
 		for requiredLevel, bossName in pairs(currentMob) do
 			if currentLevel >= requiredLevel then
 				game:GetService("Lighting").Invite:FireServer({}, workspace.Game.Teleporters.Model:FindFirstChild(bossName))
+				print("seks")
 			end
 		end
 		
