@@ -44,7 +44,7 @@ local function AutofarmFunction()
 		local lastSavedProgress = 1
 		for requiredLevel, bossData in pairs(currentMob) do
 			print("RL", requiredLevel, "PR", bossData.Progress)
-			if currentLevel >= requiredLevel and bossData.Progress > lastSavedProgress then 
+			if currentLevel >= requiredLevel and bossData.Progress >= lastSavedProgress then 
 				currentBoss = bossData
 				lastSavedProgress = bossData.Progress
 				print(currentBoss.Name)
