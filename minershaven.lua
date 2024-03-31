@@ -14,7 +14,7 @@ end
 
 local function NoClosestPlayersToTheBox(Box)
 	for _, v in pairs(game.Players:GetChildren()) do
-		if v.Name ~= localPlayer.Name and (v.Character.HumanoidRootPart.Position - Box.Position).Magnitude < 105 then return false end
+		if v.Name ~= localPlayer.Name and v.Character:FindFirstChild("HumanoidRootPart") and (v.Character.HumanoidRootPart.Position - Box.Position).Magnitude < 105 then return false end
 	end
 	return true
 end
@@ -36,13 +36,16 @@ localPlayer.Character:WaitForChild("Humanoid").Health = 0
 game.Workspace.Boxes.ChildAdded:Connect(function(child) table.insert(CurrentBoxes, child) end)
 game.Workspace.Boxes.ChildRemoved:Connect(function(child) table.remove(CurrentBoxes, table.find(CurrentBoxes, child)) end)
 
+local NeededTransparency = 0.01
+
 while task.wait(0.25) do
 	if #CurrentBoxes > 0 then
 		local Character = localPlayer.Character or localPlayer.CharacterAdded:Wait()
 		local HRP = Character:WaitForChild("HumanoidRootPart")
 		
 		for _, Box in pairs(CurrentBoxes) do
-			while NoClosestPlayersToTheBox(Box) == true and Box.Transparency < 0.51 and RunService.RenderStepped:Wait() do
+			NeededTransparency = Box.Name == "Shadow" and 0.01 or 0.51
+			while NoClosestPlayersToTheBox(Box) == true and Box.Transparency < NeededTransparency and RunService.RenderStepped:Wait() do
 				HRP.CFrame = CFrame.new(Box.Position + Vector3.new(0, -3.75, 0))
 				Platform.CFrame = CFrame.new(Box.Position + Vector3.new(0, -6.75, 0))
 			end
