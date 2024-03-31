@@ -31,28 +31,22 @@ else
 end
 
 localPlayer.CharacterAdded:Connect(function() noclip() end)
-localPlayer.Character:WaitForChild("Humanoid").Health = 0
+localPlayer.Character:WaitForChild("HumanoidRootPart").Health = 0
 
 game.Workspace.Boxes.ChildAdded:Connect(function(child) table.insert(CurrentBoxes, child) end)
 game.Workspace.Boxes.ChildRemoved:Connect(function(child) table.remove(CurrentBoxes, table.find(CurrentBoxes, child)) end)
 
-while RunService.RenderStepped:Wait() do
+while task.wait(0.25) do
 	if #CurrentBoxes > 0 then
 		local Character = localPlayer.Character or localPlayer.CharacterAdded:Wait()
 		local HRP = Character:WaitForChild("HumanoidRootPart")
 		
 		for _, Box in pairs(CurrentBoxes) do
-			if Box.Transparency < 0.51 and NoClosestPlayersToTheBox(Box) == true then
+			while NoClosestPlayersToTheBox(Box) == true and Box.Transparency < 0.51 and RunService.RenderStepped:Wait() do
 				HRP.CFrame = CFrame.new(Box.Position + Vector3.new(0, -3.75, 0))
 				Platform.CFrame = CFrame.new(Box.Position + Vector3.new(0, -6.75, 0))
-			else
-				if Box.Transparency >= 0.51 then
-					table.remove(CurrentBoxes, table.find(CurrentBoxes, Box))
-				end
-				
-				HRP.CFrame = CFrame.new(0, -202, 0)
-				Platform.CFrame = CFrame.new(0, -205, 0)
 			end
+			if Box.Transparency >= 0.51 then table.remove(CurrentBoxes, table.find(CurrentBoxes, Box)) end
 		end
 		
 		HRP.CFrame = CFrame.new(0, -202, 0)
