@@ -33,6 +33,7 @@ end
 localPlayer.CharacterAdded:Connect(function() noclip() end)
 localPlayer.Character:WaitForChild("Humanoid").Health = 0
 
+for _, Box in pairs(game.Workspace.Boxes:GetChildren()) do table.insert(CurrentBoxes, Box) end
 game.Workspace.Boxes.ChildAdded:Connect(function(child) table.insert(CurrentBoxes, child) end)
 game.Workspace.Boxes.ChildRemoved:Connect(function(child) table.remove(CurrentBoxes, table.find(CurrentBoxes, child)) end)
 
@@ -44,7 +45,7 @@ while task.wait(0.25) do
 		local HRP = Character:WaitForChild("HumanoidRootPart")
 		
 		for _, Box in pairs(CurrentBoxes) do
-			NeededTransparency = Box.Name == "Shadow" and 0.01 or 0.51
+			NeededTransparency = Box.Name == "Shadow" and 0.51 or 0.01
 			while NoClosestPlayersToTheBox(Box) == true and Box.Transparency < NeededTransparency and RunService.RenderStepped:Wait() do
 				HRP.CFrame = CFrame.new(Box.Position + Vector3.new(0, -3.75, 0))
 				Platform.CFrame = CFrame.new(Box.Position + Vector3.new(0, -6.75, 0))
