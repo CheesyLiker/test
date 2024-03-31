@@ -31,7 +31,7 @@ else
 end
 
 localPlayer.CharacterAdded:Connect(function() noclip() end)
-localPlayer.Character:WaitForChild("HumanoidRootPart").Health = 0
+localPlayer.Character:WaitForChild("Humanoid").Health = 0
 
 game.Workspace.Boxes.ChildAdded:Connect(function(child) table.insert(CurrentBoxes, child) end)
 game.Workspace.Boxes.ChildRemoved:Connect(function(child) table.remove(CurrentBoxes, table.find(CurrentBoxes, child)) end)
