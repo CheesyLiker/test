@@ -33,7 +33,6 @@ end
 localPlayer.CharacterAdded:Connect(function() noclip() end)
 localPlayer.Character:WaitForChild("Humanoid").Health = 0
 
-for _, Box in pairs(game.Workspace.Boxes:GetChildren()) do table.insert(CurrentBoxes, Box) end
 game.Workspace.Boxes.ChildAdded:Connect(function(child) table.insert(CurrentBoxes, child) end)
 game.Workspace.Boxes.ChildRemoved:Connect(function(child) table.remove(CurrentBoxes, table.find(CurrentBoxes, child)) end)
 
